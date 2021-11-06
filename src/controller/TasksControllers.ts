@@ -44,3 +44,16 @@ export const finishedTask = async (request: Request, response: Response) => {
  return response.status(404).json({message: 'Task not found!'})
 
 };
+
+export const removeTask = async (request: Request, response: Response) => {
+  const {id} = request.params
+  const task = await getRepository(Tasks).delete(id)
+  
+  if (task.affected === 1) {
+    const taskUpdated = await getRepository(Tasks).findOne(id)
+    return response.json({message: 'Task removed!'})
+  } 
+
+ return response.status(404).json({message: 'Task not found!'})
+
+};

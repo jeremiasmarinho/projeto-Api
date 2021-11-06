@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 
-import { getTasks, saveTask, getTask, updateTask, finishedTask } from './controller/TasksControllers';
+import { getTasks, saveTask, getTask, updateTask, finishedTask, removeTask } from './controller/TasksControllers';
 
 const routes = Router();
 
@@ -13,6 +13,7 @@ routes.get('/', (request: Request, response: Response) => {
   routes.post('/tasks', saveTask)
   routes.put('/tasks/:id', updateTask)
   routes.patch('/tasks/:id', finishedTask)
+  routes.delete('/tasks/:id', removeTask)
   
 
   export default routes;
